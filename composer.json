@@ -1,0 +1,13 @@
+{
+    "name": "felixdorn/secret-key-generator",
+    "type": "project",
+    "license": "GPL-3.0-or-later",
+    "require": {
+        "leocavalcante/siler": "^1.7",
+        "twig/twig": "^3.0",
+        "kuria/error": "^4.2"
+    },
+    "autoload": {
+        "files": ["src/functions.php"]
+    }
+}
