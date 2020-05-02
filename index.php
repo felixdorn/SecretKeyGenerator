@@ -1,13 +1,25 @@
-<?php declare(strict_types=1);
+<?php
 
 function generateKey(int $length)
 {
+    if ($length > 4096) {
+        exit('Length exhausted 4096');
+    }
     return substr(base64_encode(
         random_bytes($length + 1)
     ), $length);
 }
 $length = $_GET['length'] ?? 64;
 $key = generateKey((int)$length);
+
+if ($_SERVER['REQUEST_URI'] === '/text') {
+    echo $key;
+
+    if (function_exists('fastcgi_finish_request')) {
+        fastcgi_finish_request();
+    }
+    exit(0);
+}
 
 ?>
 <!doctype html>
