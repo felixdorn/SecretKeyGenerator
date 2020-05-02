@@ -19,7 +19,7 @@ function generateKey(int $length) {
     }
 
     if ($length > $max) {
-        stop('Length should be greater than %s', $max);
+        stop('Length should not be greater than %s', $max);
     }
 
     return substr(base64_encode(
