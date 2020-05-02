@@ -10,7 +10,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 $env = $_ENV['APP_ENV'] ?? 'production';
 $handler = (new ErrorHandler());
-$handler->setDebug(true);
+$handler->setDebug($env === 'development');
 $handler->register();
 
 init(dirname(__DIR__) . '/views');
