@@ -16,7 +16,7 @@ $handler->register();
 init(dirname(__DIR__) . '/views');
 
 get('/', function () {
-    $length = (int) $_GET['length'] ?? env('KEY_DEFAULT_LENGTH', 64);
+    $length = getKeyLength();
     echo render('index.twig', [
         'key' => generateKey($length),
          'length'  => $length
@@ -24,6 +24,7 @@ get('/', function () {
 });
 
 get('/text', function () {
-    $length = $_GET['length'] ?? env('KEY_DEFAULT_LENGTH', 64);
-    echo  generateKey((int)$length);
+    echo  generateKey(
+        getKeyLength()
+    );
 });

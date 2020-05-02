@@ -26,3 +26,7 @@ function generateKey(int $length) {
         random_bytes($length)
     ), 0,  $length);
 }
+
+function getKeyLength(): int{
+    return (int)($_GET['length'] ?? env('KEY_DEFAULT_LENGTH', 64));
+}
