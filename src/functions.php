@@ -24,5 +24,5 @@ function generateKey(int $length) {
 
     return substr(base64_encode(
         random_bytes($length)
-    ), $length);
+    ), 0,  $length);
 }
