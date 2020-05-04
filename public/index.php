@@ -1,14 +1,14 @@
 <?php
 
 use Kuria\Error\ErrorHandler;
-use function Siler\Dotenv\env;
+use function Siler\Env\env_var;
 use function Siler\Route\get;
 use function Siler\Twig\init;
 use function Siler\Twig\render;
 
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-$env = $_ENV['APP_ENV'] ?? 'production';
+$env = env_var('APP_ENV', 'production');
 $handler = (new ErrorHandler());
 $handler->setDebug($env === 'development');
 $handler->register();

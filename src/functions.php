@@ -1,6 +1,7 @@
 <?php
 
-use function Siler\Dotenv\env;
+use function Siler\array_get_int;
+use function Siler\Env\env_int;
 
 function stop(string $error, ...$context): void {
     echo sprintf($error, $context);
@@ -12,7 +13,7 @@ function stop(string $error, ...$context): void {
 }
 
 function generateKey(int $length) {
-    $max = env('KEY_MAX_LENGTH', 1024);
+    $max = env_int('KEY_MAX_LENGTH', 1024);
 
     if ($length <= 0) {
         stop('Length should be greater than 0');
@@ -28,5 +29,5 @@ function generateKey(int $length) {
 }
 
 function getKeyLength(): int{
-    return (int)($_GET['length'] ?? env('KEY_DEFAULT_LENGTH', 64));
+    return array_get_int($_GET, 'length', env_int('KEY_DEFAULT_LENGTH', 64));
 }
