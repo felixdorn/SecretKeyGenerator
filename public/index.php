@@ -17,7 +17,7 @@ init(dirname(__DIR__) . '/views');
 
 get('/', function () {
     $length = getKeyLength();
-    list($err, $key) = generateKey($length, getMaxKeyLength());
+    list($err, $key) = generateKey($length, getKeyMaxLength());
 
     if ($err !== null) {
         stop($err);
@@ -32,7 +32,7 @@ get('/', function () {
 get('/text', function () {
     list($err, $key) = generateKey(
         getKeyLength(),
-        getMaxKeyLength()
+        getKeyMaxLength()
     );
 
     if ($err !== null) {
@@ -46,7 +46,7 @@ function getKeyLength(): int{
     return array_get_int($_GET, 'length', env_int('KEY_DEFAULT_LENGTH', 64));
 }
 
-function getMaxKeyLength(): int {
+function getKeyMaxLength(): int {
     return env_int('KEY_MAX_LENGTH', 1024);
 }
 
